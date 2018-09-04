@@ -1,19 +1,19 @@
+scriptencoding uft-8
+set encoding=utf-8
+
 set number
 set linebreak
 set showbreak=+++
 set showmatch
-set visualbell
+set novisualbell
 
-set hlsearch
+set nohlsearch
 set smartcase
 set ignorecase
 set incsearch
 
-" padding bottom
+" offset
 set so=7
-
-" nohtlsearch snipped
-nnoremap <leader><space> :nohlsearch<cr>
 
 set autoindent
 set tabstop=2
@@ -24,21 +24,20 @@ set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 
 syntax on
 
-inoremap jk <Esc>
-
 execute pathogen#infect()
 filetype plugin indent on
 
 let mapleader = ","
 
+" nerdtreee
 nnoremap <leader>n :NERDTreeToggle<cr>
-
-nnoremap <leader>w :w<cr>
 
 " search
 nnoremap <space> /
-nnoremap <leader><space> :nohl<cr>
+nnoremap <leader><space> ?
 
+" save and quit
+nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :q!<cr>
 
@@ -47,16 +46,18 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
-nnoremap <ctrl>j <ctrl>wj
 
 " window split
 nnoremap <leader>v :vs<cr>
 nnoremap <leader>h :sp<cr>
 
-" set jsx syntax to .js files
-let g:jsx_ext_required = 0
-
 " list styles
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:.
+if has("patch-7.4.710")
+  set listchars=eol:~,tab:>.,trail:~,extends:>,precedes:<,space:·
+else
+  set listchars=eol:~,tab:>.,trail:~,extends:>,precedes:<
+endif
+
 nnoremap <leader>. :set list<cr>
-nnoremap <leader>- :set nolist<cr>
+nnoremap <leader>/ :set nolist<cr>
+
